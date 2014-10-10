@@ -24,8 +24,11 @@ Kibana is an open source (Apache Licensed), browser based analytics and search d
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__mkdir} -p %{buildroot}%{__prefix}/%{name}/
-%{__cp} -r {app,css,favicon.ico,font,img,vendor,config.js,index.html} %{buildroot}%{__prefix}/%{name}/
-%{__cp} -r {LICENSE.md,README.md} %{buildroot}%{__prefix}/%{name}/
+# folders
+%{__cp} -r {app,css,font,img,vendor} %{buildroot}%{__prefix}/%{name}/
+# files
+%{__cp} -r {favicon.ico,config.js,index.html,LICENSE.md,README.md} %{buildroot}%{__prefix}/%{name}/
+# keep the default rpm config.js around
 %{__cp} config.js %{buildroot}%{__prefix}/%{name}/config.default.js
 
 %clean
@@ -46,5 +49,5 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{__prefix}/%{name}/config.js
 
 %changelog
-* Thu Oct 08 2014 Alex Schultz <aschultz@next-development.com> - 3.1.1-1
+* Fri Oct 10 2014 Alex Schultz <aschultz@next-development.com> - 3.1.1-1
 - Kibana 3.1.1
